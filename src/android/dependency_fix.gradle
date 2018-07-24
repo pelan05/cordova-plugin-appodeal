@@ -14,3 +14,38 @@ configurations.all{
 		}
     }
 }
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])	
+    implementation 'com.android.support:multidex:1.0.3'
+    //Requesting Consent from European Users
+    //https://developers.google.com/admob/android/eu-consent
+    implementation 'com.google.android.ads.consent:consent-library:1.0.3'
+
+    implementation 'com.google.android.gms:play-services-ads:10.2.1'
+    implementation 'com.google.android.gms:play-services-location:10.2.1'
+		implementation 'com.google.android.exoplayer:exoplayer:2.6.1'
+
+    implementation name: 'adcolony-sdk-3.2.1', ext: 'aar'
+    implementation name: 'mmedia-6.4.0', ext: 'aar'
+    implementation name: 'mobvista_alphab', ext: 'aar'
+    implementation name: 'mobvista_appwall', ext: 'aar'
+    implementation name: 'mobvista_appwallext', ext: 'aar'
+    implementation name: 'mobvista_common', ext: 'aar'
+    implementation name: 'mobvista_interstitial', ext: 'aar'
+    implementation name: 'mobvista_mvdownloads', ext: 'aar'
+    implementation name: 'mobvista_mvjscommon', ext: 'aar'
+    implementation name: 'mobvista_mvnative', ext: 'aar'
+    implementation name: 'mobvista_nativeex', ext: 'aar'
+    implementation name: 'mobvista_offerwall', ext: 'aar'
+    implementation name: 'mobvista_playercommon', ext: 'aar'
+    implementation name: 'mobvista_reward', ext: 'aar'
+    implementation name: 'mobvista_videocommon', ext: 'aar'
+    implementation name: 'mobvista_videofeeds', ext: 'aar'
+}
