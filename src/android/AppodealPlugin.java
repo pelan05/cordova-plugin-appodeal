@@ -431,7 +431,7 @@ public class AppodealPlugin extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Appodeal.setCustomRule(name, value);
+                    Appodeal.setExtraData(name, value);
                 }
             });
             return true;
@@ -441,7 +441,7 @@ public class AppodealPlugin extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Appodeal.setCustomRule(name, value);
+                    Appodeal.setExtraData(name, value);
                 }
             });
             return true;
@@ -451,7 +451,7 @@ public class AppodealPlugin extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Appodeal.setCustomRule(name, value);
+                    Appodeal.setExtraData(name, value);
                 }
             });
             return true;
@@ -461,7 +461,7 @@ public class AppodealPlugin extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Appodeal.setCustomRule(name, value);
+                    Appodeal.setExtraData(name, value);
                 }
             });
             return true;
@@ -760,7 +760,7 @@ public class AppodealPlugin extends CordovaPlugin {
         }
 
         @Override
-        public void onNonSkippableVideoLoaded() {
+        public void onNonSkippableVideoLoaded(boolean loaded) {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -796,7 +796,7 @@ public class AppodealPlugin extends CordovaPlugin {
     private RewardedVideoCallbacks rewardedVideoListener = new RewardedVideoCallbacks() {
 
         @Override
-        public void onRewardedVideoClosed(final boolean finished) {
+        public void onRewardedVideoClosed(boolean finished) {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -829,7 +829,7 @@ public class AppodealPlugin extends CordovaPlugin {
         }
 
         @Override
-        public void onRewardedVideoFinished(final int amount, final String name) {
+        public void onRewardedVideoFinished(double amount, String name) {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -847,7 +847,7 @@ public class AppodealPlugin extends CordovaPlugin {
         }
 
         @Override
-        public void onRewardedVideoLoaded() {
+        public void onRewardedVideoLoaded(boolean loaded) {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

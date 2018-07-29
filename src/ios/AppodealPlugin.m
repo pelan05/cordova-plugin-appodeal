@@ -120,6 +120,9 @@ int nativeShowStyleForType(int adTypes) {
             bannerOverlapBottom = false;
             bannerOverlapTop = true;
         }
+        
+        if (bannerOverlap)
+            [self changeWebViewWithOverlappedBanner];
     }
     CDVPluginResult* pluginResult = nil;
     if([Appodeal showAd:nativeShowStyleForType((int)[[[command arguments] objectAtIndex:0] integerValue]) rootViewController:[[UIApplication sharedApplication] keyWindow].rootViewController]) {
@@ -175,7 +178,7 @@ int nativeShowStyleForType(int adTypes) {
     }
     
     [Appodeal hideBanner];
-    if (bannerOverlap && bannerIsShowing) {
+    if (bannerOverlap) {
         [self returnNativeSize];
     }
     bannerIsShowing = false;
@@ -224,9 +227,6 @@ int nativeShowStyleForType(int adTypes) {
     if (![Appodeal isInitalized]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChangeFrame:) name: UIApplicationDidChangeStatusBarFrameNotification object:nil];
         bannerOverlap = [[[command arguments] objectAtIndex:0] boolValue];
-        if (hasStatusBarPlugin) {
-            bannerOverlap = false;
-        }
     }
 }
 
