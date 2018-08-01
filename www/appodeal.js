@@ -150,22 +150,6 @@ Appodeal.canShowWithPlacement = function(adType, placement, callback) {
     exec(callback, null, "AppodealPlugin", "canShowWithPlacement", [adType, placement]);
 };
 
-Appodeal.setCustomBooleanRule = function(name, rule) {
-    exec(null, null, "AppodealPlugin", "setCustomBooleanRule", [name, rule]);
-};
-
-Appodeal.setCustomIntegerRule = function(name, rule) {
-    exec(null, null, "AppodealPlugin", "setCustomIntegerRule", [name, rule]);
-};
-
-Appodeal.setCustomDoubleRule = function(name, rule) {
-    exec(null, null, "AppodealPlugin", "setCustomDoubleRule", [name, rule]);
-};
-
-Appodeal.setCustomStringRule = function(name, rule) {
-    exec(null, null, "AppodealPlugin", "setCustomStringRule", [name, rule]);
-};
-
 Appodeal.getRewardParameters = function(callback) {
     exec(callback, null, "AppodealPlugin", "getRewardParameters", []);
 };

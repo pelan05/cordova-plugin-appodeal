@@ -330,35 +330,6 @@ int nativeShowStyleForType(int adTypes) {
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-
-- (void) setCustomDoubleRule:(CDVInvokedUrlCommand*)command {
-    NSString *jsonString = [[command arguments] objectAtIndex:0];
-    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    [Appodeal setCustomRule:json];
-}
-
-- (void) setCustomIntegerRule:(CDVInvokedUrlCommand*)command {
-    NSString *jsonString = [[command arguments] objectAtIndex:0];
-    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    [Appodeal setCustomRule:json];
-}
-
-- (void) setCustomStringRule:(CDVInvokedUrlCommand*)command {
-    NSString *jsonString = [[command arguments] objectAtIndex:0];
-    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    [Appodeal setCustomRule:json];
-}
-
-- (void) setCustomBooleanRule:(CDVInvokedUrlCommand*)command {
-    NSString *jsonString = [[command arguments] objectAtIndex:0];
-    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    [Appodeal setCustomRule:json];
-}
-
 - (void) trackInAppPurchase:(CDVInvokedUrlCommand*)command {
     NSNumber *amount = [NSNumber numberWithInt:[[[command arguments] objectAtIndex:0] intValue]];
     [[APDSdk sharedSdk] trackInAppPurchase:amount currency:[[command arguments] objectAtIndex:0]];
