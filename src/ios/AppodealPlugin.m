@@ -401,6 +401,17 @@ int nativeShowStyleForType(int adTypes) {
     self.viewController.view.frame = bounds;
     [self.webView setFrame:bounds];
 }
+- (BOOL)isiPhoneX
+{
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        CGFloat topPadding = window.safeAreaInsets.top;
+        CGFloat bottomPadding = window.safeAreaInsets.bottom;
+        return topPadding > 20 || bottomPadding > 20;
+    } else {
+        return false;
+    }
+}
 
 - (void) changeWebViewWithOverlappedBanner {
     CGRect bounds = [self.viewController.view.window bounds];
@@ -420,10 +431,14 @@ int nativeShowStyleForType(int adTypes) {
             statusBarHeight = 20.f;
     }
 
+    float extraPadding = 0;
+    if ([self isiPhoneX]) {
+        extraPadding = 35;
+    }
     if (bannerOverlapTop) {
-        [self.webView setFrame:CGRectMake(bounds.origin.x, bounds.origin.y + bannerHeight + statusBarHeight, bounds.size.width, bounds.size.height - bannerHeight - statusBarHeight)];
+        [self.webView setFrame:CGRectMake(bounds.origin.x, bounds.origin.y + bannerHeight + statusBarHeight, bounds.size.width, bounds.size.height - bannerHeight - statusBarHeight - extraPadding)];
     } else if (bannerOverlapBottom) {
-        [self.webView setFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height - bannerHeight)];
+        [self.webView setFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height - bannerHeight - extraPadding)];
     }
 }
 
