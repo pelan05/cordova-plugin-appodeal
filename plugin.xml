@@ -69,14 +69,6 @@
 			<activity android:name="com.appodeal.ads.networks.vpaid.VPAIDActivity" 
 				android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
-			<!-- Chartboost -->
-			<activity android:name="com.chartboost.sdk.CBImpressionActivity" 
-				android:excludeFromRecents="true" 
-				android:hardwareAccelerated="true"
-				android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" 
-				android:configChanges="keyboardHidden|orientation|screenSize" />
-			<!-- End Chartboost -->
-
 			<!-- Applovin -->
 			<activity android:name="com.applovin.adview.AppLovinInterstitialActivity" 
 				android:configChanges="orientation|screenSize"/>
@@ -104,26 +96,6 @@
 				android:configChanges="keyboardHidden|orientation|screenSize"/>
 			<!-- End Amazon_ads -->
 
-			<!-- Facebook -->
-			<!--suppress AndroidDomInspection -->
-			<activity
-				android:name="com.facebook.ads.AudienceNetworkActivity"
-				android:configChanges="keyboardHidden|orientation|screenSize"
-				android:exported="false" />
-			<activity
-				android:name="com.facebook.ads.internal.ipc.RemoteANActivity"
-				android:configChanges="keyboardHidden|orientation|screenSize"
-				android:exported="false"
-				android:process=":adnw" />
-			<service
-				android:name="com.facebook.ads.internal.ipc.AdsProcessPriorityService"
-				android:exported="false" />
-			<service
-				android:name="com.facebook.ads.internal.ipc.AdsMessengerService"
-				android:exported="false"
-				android:process=":adnw" />
-			<!-- End Facebook -->
-
 			<!-- Startapp -->
 			<!--suppress AndroidDomInspection -->
 			<activity android:name="com.startapp.android.publish.ads.list3d.List3DActivity" 
@@ -149,86 +121,6 @@
 				</intent-filter>
 			</receiver>
 			<!-- End Startapp -->
-
-			<!-- Yandex-metrica -->
-			<service android:name="com.yandex.metrica.MetricaService"
-				android:enabled="true"
-				android:exported="true" 
-				android:process=":Metrica" 
-				tools:ignore="ExportedService">
-				<intent-filter>
-					<category android:name="android.intent.category.DEFAULT" />
-					<action android:name="com.yandex.metrica.IMetricaService" />
-					<data android:scheme="metrica" />
-				</intent-filter>
-				<meta-data android:name="metrica:api:level" 
-					android:value="70" />
-			</service>
-			<service android:name="com.yandex.metrica.ConfigurationService" 
-				android:enabled="true" 
-				android:exported="true" 
-				android:process=":Metrica" 
-				tools:ignore="ExportedService">
-				<meta-data android:name="metrica:configuration:api:level" android:value="2" />
-				<intent-filter>
-					<action android:name="com.yandex.metrica.configuration.ACTION_START" />
-				</intent-filter>
-			</service>
-			<service android:name="com.yandex.metrica.ConfigurationJobService" 
-				android:enabled="true" android:exported="false" 
-				android:permission="android.permission.BIND_JOB_SERVICE"
-				android:process=":Metrica">
-			</service>
-			<receiver android:name="com.yandex.metrica.MetricaEventHandler" 
-				android:enabled="true" 
-				android:exported="true" 
-				tools:ignore="ExportedReceiver">
-				<intent-filter>
-					<action android:name="com.android.vending.INSTALL_REFERRER" />
-				</intent-filter>
-			</receiver>
-			<!-- End Yandex-metrica -->
-
-			<!-- Yandex-mobileads -->
-			<!--suppress AndroidDomInspection -->
-			<activity android:name="com.yandex.mobile.ads.AdActivity" 
-				android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-			<!-- End Yandex-mobileads -->
-
-			<!-- Unity_ads -->
-			<activity android:name="com.unity3d.ads.adunit.AdUnitActivity" 
-				android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" 
-				android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
-				android:hardwareAccelerated="true" />
-			<activity android:name="com.unity3d.ads.adunit.AdUnitSoftwareActivity" 
-				android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" 
-				android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
-				android:hardwareAccelerated="false" />
-			<activity android:name="com.unity3d.ads.adunit.AdUnitTransparentActivity" 
-				android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" 
-				android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" 
-				android:hardwareAccelerated="true" />
-			<activity android:name="com.unity3d.ads.adunit.AdUnitTransparentSoftwareActivity" 
-				android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" 
-				android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" 
-				android:hardwareAccelerated="false" />
-			<activity android:name="com.unity3d.ads2.adunit.AdUnitActivity" 
-				android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" 
-				android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
-				android:hardwareAccelerated="true" />
-			<activity android:name="com.unity3d.ads2.adunit.AdUnitSoftwareActivity" 
-				android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" 
-				android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
-				android:hardwareAccelerated="false" />
-			<activity android:name="com.unity3d.ads2.adunit.AdUnitTransparentActivity" 
-				android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" 
-				android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" 
-				android:hardwareAccelerated="true" />
-			<activity android:name="com.unity3d.ads2.adunit.AdUnitTransparentSoftwareActivity" 
-				android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" 
-				android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" 
-				android:hardwareAccelerated="false" />
-			<!-- End Unity_ads -->
 
 			<!-- Vungle -->
 			<!--suppress AndroidDomInspection -->
@@ -322,20 +214,6 @@
 				android:hardwareAccelerated="true"/>
 			<!-- End Adcolony -->
 
-			<!-- Inmobi -->
-			<activity android:name="com.inmobi.rendering.InMobiAdActivity" 
-				android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize|screenLayout" 
-				android:hardwareAccelerated="true" 
-				android:resizeableActivity="false" 
-				android:theme="@android:style/Theme.NoTitleBar" 
-				tools:ignore="UnusedAttribute"/>
-			<!-- End Inmobi -->
-
-			<!-- Mailru -->
-			<activity android:name="com.my.target.common.MyTargetActivity" 
-				android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-			<!-- End Mailru -->
-
         </config-file>
         <framework src="com.google.android.gms:play-services-ads:10+" />
 
@@ -345,15 +223,11 @@
 		<source-file src="libs/Android/amazon_ads-5.9.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/applovin-8.0.2.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/appodeal-2.4.10.jar" target-dir="app/libs" />
-		<source-file src="libs/Android/chartboost-7.2.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/converter-gson-2.2.0.jar" target-dir="app/libs" />
-		<source-file src="libs/Android/facebook-5.1.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/fetch-1.1.5.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/gson-2.7.jar" target-dir="app/libs" />
-		<source-file src="libs/Android/inmobi-7.1.1.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/ironsource-6.7.9.1.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/logging-interceptor-3.7.0.jar" target-dir="app/libs" />
-		<source-file src="libs/Android/mailru-5.1.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/mobvista-9.0.0-alphab.aar" target-dir="app/libs" />
 		<source-file src="libs/Android/mobvista-9.0.0-common.aar" target-dir="app/libs" />
 		<source-file src="libs/Android/mobvista-9.0.0-interstitial.aar" target-dir="app/libs" />
@@ -379,11 +253,8 @@
 		<source-file src="libs/Android/retrofit-2.2.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/startapp-3.9.3.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/tapjoy-11.12.2.jar" target-dir="app/libs" />
-		<source-file src="libs/Android/unity_ads-2.2.1.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/VNG-moat-mobile-app-kit-2.2.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/vungle-6.3.12.jar" target-dir="app/libs" />
-		<source-file src="libs/Android/yandex-metrica-3.2.2.jar" target-dir="app/libs" />
-		<source-file src="libs/Android/yandex-mobileads-2.75.jar" target-dir="app/libs" />
 
 	</platform>
 

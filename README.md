@@ -29,11 +29,22 @@ This is an official Appodeal Cordova plugin, created to support Appodeal SDK wit
 + Check [AppodealPlugin.m](/scr/ios/AppodealPlugin.m) for any API changes.
 + Done, you can use updated plugin for iOS Platform.
 
-## Install
+## Install this branch
 
 Simply go to the project folder over console/terminal and run there following command:
 
-    cordova plugin add https://github.com/appodeal/appodeal-cordova-plugin.git
+    cordova plugin add https://github.com/GartorwareCorp/appodeal-cordova-plugin#trimmed
+
+Then in your code you must disable these networks **BEFORE** initialization:
+```
+// Networks
+Appodeal.disableNetwork(activity, "mailru");
+Appodeal.disableNetwork(activity, "yandex");
+Appodeal.disableNetwork(activity, "facebook");
+Appodeal.disableNetwork(activity, "chartboost");
+Appodeal.disableNetwork(activity, "inmobi");
+Appodeal.disableNetwork(activity, "unity_ads");
+```
 
 Google Play Services (v10+) already included to plugin dependencies.
 
