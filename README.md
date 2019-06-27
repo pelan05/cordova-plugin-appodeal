@@ -33,7 +33,7 @@ This is an official Appodeal Cordova plugin, created to support Appodeal SDK wit
 
 Simply go to the project folder over console/terminal and run there following command:
 
-    cordova plugin add https://github.com/appodeal/appodeal-cordova-plugin.git
+    cordova plugin add https://github.com/GartorwareCorp/appodeal-cordova-plugin.git --variable ADMOB_APP_ID="<YOUR_ANDROID_ADMOB_APP_ID_AS_FOUND_IN_ADMOB>"
 
 Google Play Services (v10+) already included to plugin dependencies.
 

@@ -13,6 +13,13 @@
     </js-module>
 
     <platform name="android">
+		<preference name="ADMOB_APP_ID" default=""/>
+		<config-file parent="/manifest/application" target="app/src/main/AndroidManifest.xml" mode="merge">
+            <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="$ADMOB_APP_ID"/>
+        </config-file>
+
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="AppodealPlugin">
                 <param name="android-package" value="com.appodeal.plugin.AppodealPlugin"/>
