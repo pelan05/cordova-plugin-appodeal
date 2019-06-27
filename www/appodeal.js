@@ -29,9 +29,9 @@ Appodeal.Gender = {
 
 Appodeal.pluginVersion = '3.0.4';
 
-Appodeal.initialize = function(appKey, adType) {
+Appodeal.initialize = function(appKey, adType, consent) {
 	exec(null, null, "AppodealPlugin", "setPluginVersion", [Appodeal.pluginVersion]);
-    exec(null, null, "AppodealPlugin", "initialize", [appKey, adType]);
+    exec(null, null, "AppodealPlugin", "initialize", [appKey, adType, consent]);
 };
 
 Appodeal.show = function(adType, callback) {

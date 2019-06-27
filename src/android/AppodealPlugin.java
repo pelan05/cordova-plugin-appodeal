@@ -102,10 +102,11 @@ public class AppodealPlugin extends CordovaPlugin {
         if (action.equals(ACTION_INITIALIZE)) {
             final String appKey = args.getString(0);
             final int adType = args.getInt(1);
+            final boolean consentValue = args.getInt(2);
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Appodeal.initialize(cordova.getActivity(), appKey, getAdType(adType));
+                    Appodeal.initialize(cordova.getActivity(), appKey, getAdType(adType), consentValue);
                     isInitialized = true;
                 }
             });
