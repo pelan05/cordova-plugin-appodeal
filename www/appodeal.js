@@ -158,6 +158,14 @@ Appodeal.getRewardParametersForPlacement = function(placement, callback) {
     exec(callback, null, "AppodealPlugin", "getRewardParametersForPlacement", [placement]);
 };
 
+Appodeal.setSegmentFilter = function(name, value) {
+    exec(null, null, "AppodealPlugin", "setSegmentFilter", [name, value]);
+};
+
+Appodeal.setExtraData = function(name, value) {
+    exec(null, null, "AppodealPlugin", "setExtraData", [name, value]);
+};
+
 Appodeal.setAge = function(age) {
     exec(null, null, "AppodealPlugin", "setAge", [age]);
 };

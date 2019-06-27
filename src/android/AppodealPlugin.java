@@ -66,6 +66,8 @@ public class AppodealPlugin extends CordovaPlugin {
     private static final String ACTION_SET_CUSTOM_STRING_RULE = "setCustomStringRule";
     private static final String ACTION_GET_REWARD_PARAMETERS = "getRewardParameters";
     private static final String ACTION_GET_REWARD_PARAMETERS_FOR_PLACEMENT = "getRewardParametersForPlacement";
+    private static final String ACTION_SET_SEGMENT_FILTER = "setSegmentFilter";
+    private static final String ACTION_SET_EXTRA_DATA = "setExtraData";
 
     private static final String ACTION_SET_AGE = "setAge";
     private static final String ACTION_SET_GENDER = "setGender";
@@ -457,6 +459,26 @@ public class AppodealPlugin extends CordovaPlugin {
             });
             return true;
         } else if (action.equals(ACTION_SET_CUSTOM_STRING_RULE)) {
+            final String name = args.getString(0);
+            final String value = args.getString(1);
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Appodeal.setExtraData(name, value);
+                }
+            });
+            return true;
+        } else if (action.equals(ACTION_SET_SEGMENT_FILTER)) {
+            final String name = args.getString(0);
+            final String value = args.getString(1);
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Appodeal.setSegmentFilter(name, value);
+                }
+            });
+            return true;
+        } else if (action.equals(ACTION_SET_EXTRA_DATA)) {
             final String name = args.getString(0);
             final String value = args.getString(1);
             cordova.getActivity().runOnUiThread(new Runnable() {
