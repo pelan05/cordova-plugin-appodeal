@@ -68,6 +68,7 @@ public class AppodealPlugin extends CordovaPlugin {
     private static final String ACTION_GET_REWARD_PARAMETERS_FOR_PLACEMENT = "getRewardParametersForPlacement";
     private static final String ACTION_SET_SEGMENT_FILTER = "setSegmentFilter";
     private static final String ACTION_SET_EXTRA_DATA = "setExtraData";
+    private static final String ACTION_GET_PREDICTED_ECPM = "getPredictedEcpm";
 
     private static final String ACTION_SET_AGE = "setAge";
     private static final String ACTION_SET_GENDER = "setGender";
@@ -485,6 +486,15 @@ public class AppodealPlugin extends CordovaPlugin {
                 @Override
                 public void run() {
                     Appodeal.setExtraData(name, value);
+                }
+            });
+            return true;
+        } else if (action.equals(ACTION_GET_PREDICTED_ECPM)) {
+            final int adType = args.getInt(0);
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Appodeal.getPredictedEcpm(adType);
                 }
             });
             return true;
