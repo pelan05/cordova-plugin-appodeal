@@ -26,6 +26,8 @@ import org.json.JSONObject;
 
 public class AppodealPlugin extends CordovaPlugin {
 
+    private static final String TAG = "com.appodeal.plugin";
+
     private static final String ACTION_IS_INITIALIZED = "isInitalized";
 
     private static final String ACTION_INITIALIZE = "initialize";
@@ -107,15 +109,17 @@ public class AppodealPlugin extends CordovaPlugin {
         if (action.equals(ACTION_INITIALIZE)) {
             final String appKey = args.getString(0);
             final int adType = args.getInt(1);
-            final boolean consentValue = args.getBoolean(2);
+            final boolean consentValue = args.optBoolean(2, true); // Same as Appodeal.initialize(@NonNull Activity activity, @NonNull String appKey, int adTypes)
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     if("true".equals(Settings.System.getString(cordova.getActivity().getContentResolver(), "firebase.test.lab"))) {
                         Appodeal.setTesting(true);
                     }
+                    log("Initializing SDK");
                     Appodeal.initialize(cordova.getActivity(), appKey, getAdType(adType), consentValue);
                     isInitialized = true;
+                    log("SDK initialized");
                     callback.sendPluginResult(new PluginResult(PluginResult.Status.OK, true));
                 }
             });
@@ -1145,5 +1149,11 @@ public class AppodealPlugin extends CordovaPlugin {
             res = Appodeal.show(cordova.getActivity(), Appodeal.BANNER_VIEW, placement);
 
         return res;
+    }
+
+    private static void log(String message) {
+        if(Appodeal.getLogLevel().equals(Log.LogLevel.debug) || Appodeal.getLogLevel().equals(Log.LogLevel.verbose)){
+            android.util.Log.d(TAG, message);
+        }
     }
 }
