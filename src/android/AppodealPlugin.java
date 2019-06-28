@@ -6,6 +6,7 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.provider.Settings;
 import android.widget.LinearLayout;
 import android.widget.FrameLayout;
 import android.view.ViewGroup;
@@ -503,7 +504,7 @@ public class AppodealPlugin extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    callback.sendPluginResult(new PluginResult(PluginResult.Status.OK, Appodeal.getPredictedEcpm(adType)));
+                    callback.sendPluginResult(new PluginResult(PluginResult.Status.OK, (float) Appodeal.getPredictedEcpm(adType)));
                 }
             });
             return true;
