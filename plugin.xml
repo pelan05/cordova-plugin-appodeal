@@ -344,7 +344,7 @@
 			<!-- End Mailru -->
 
         </config-file>
-        <framework src="com.google.android.gms:play-services-ads:10+" />
+        <framework src="com.google.android.gms:play-services-ads:17.+" />
 
         <source-file src="src/android/AppodealPlugin.java" target-dir="app/src/main/java/com/appodeal/plugin" />
     	<framework src="src/android/dependency_fix.gradle" custom="true" type="gradleReference" />
