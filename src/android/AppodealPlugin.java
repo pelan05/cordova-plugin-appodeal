@@ -500,7 +500,7 @@ public class AppodealPlugin extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Appodeal.getPredictedEcpm(adType);
+                    callback.sendPluginResult(new PluginResult(PluginResult.Status.OK, Appodeal.getPredictedEcpm(adType)));
                 }
             });
             return true;

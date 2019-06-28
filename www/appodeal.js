@@ -166,8 +166,8 @@ Appodeal.setExtraData = function(name, value) {
     exec(null, null, "AppodealPlugin", "setExtraData", [name, value]);
 };
 
-Appodeal.getPredictedEcpm = function(adType) {
-    exec(null, null, "AppodealPlugin", "getPredictedEcpm", [adType]);
+Appodeal.getPredictedEcpm = function(adType, callback) {
+    exec(callback, null, "AppodealPlugin", "getPredictedEcpm", [adType]);
 };
 
 Appodeal.setAge = function(age) {
