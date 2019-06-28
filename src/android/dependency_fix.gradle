@@ -1,4 +1,4 @@
-def right_version = "10+"; //version from Appodeal plugin
+def right_version = "17.+"; //version from Appodeal plugin
 configurations.all{
 	dependencies.all{ Dependency d ->
 		def right_version_copy = right_version
@@ -15,6 +15,17 @@ configurations.all{
     }
 }
 
+android {
+    defaultConfig {
+        // Enabling multidex support.
+        multiDexEnabled true
+    }
+    configurations { 
+        //all*.exclude group: 'com.google.android.gms'
+        //all*.exclude group: 'com.android.support', module: 'support-v4'
+    }
+}
+
 repositories {
     flatDir {
         dirs 'libs'
@@ -28,14 +39,17 @@ dependencies {
     //https://developers.google.com/admob/android/eu-consent
     implementation 'com.google.android.ads.consent:consent-library:1.0.3'
 
-    implementation 'com.google.android.gms:play-services-ads:15.0.0'
-    implementation 'com.google.android.gms:play-services-location:15.0.0'
-    implementation 'com.google.android.gms:play-services-gcm:15.0.0'
+    implementation 'com.google.android.gms:play-services-ads:17.+'
+    implementation 'com.google.android.gms:play-services-location:17.+'
+    implementation 'com.google.android.gms:play-services-gcm:17.+'
 	
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
-
+    implementation 'com.google.code.gson:gson:2.8.4'
+    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
+    implementation 'com.squareup.okio:okio:1.12.0'
     implementation 'com.squareup.picasso:picasso:2.5.2' //for Inmobi
+    
     implementation name: 'adcolony-3.3.4', ext: 'aar'
     implementation name: 'mobvista-9.0.0-alphab', ext: 'aar'
     implementation name: 'mobvista-9.0.0-common', ext: 'aar'

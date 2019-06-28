@@ -33,7 +33,7 @@ This is an official Appodeal Cordova plugin, created to support Appodeal SDK wit
 
 Simply go to the project folder over console/terminal and run there following command:
 
-    cordova plugin add https://github.com/GartorwareCorp/appodeal-cordova-plugin#trimmed
+    cordova plugin add https://github.com/GartorwareCorp/appodeal-cordova-plugin.git --variable ADMOB_APP_ID="<YOUR_ANDROID_ADMOB_APP_ID_AS_FOUND_IN_ADMOB>"
 
 Then in your code you must disable these networks **BEFORE** initialization:
 ```
@@ -46,7 +46,22 @@ Appodeal.disableNetwork(activity, "inmobi");
 Appodeal.disableNetwork(activity, "unity_ads");
 ```
 
-Google Play Services (v10+) already included to plugin dependencies.
+Also add this to your security_config.xml if targeting Android >= 28
+```
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </base-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain>localhost</domain>
+    </domain-config>
+</network-security-config>
+```
+
+Google Play Services (v17+) already included to plugin dependencies.
 
 If you have issues while installing plugin, follow the Command-line Interface Guide.
 
@@ -57,8 +72,8 @@ Minimum OS requirements:
 
 Appodeal Cordova Plugin includes:
 
-+ Android Appodeal SDK version 2.1.11
-+ iOS Appodeal SDK version 2.1.10
++ Android Appodeal SDK version 2.4.10
++ iOS Appodeal SDK version 2.4.4.3-Beta
 
 ## Cordova Integration
 
