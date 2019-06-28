@@ -145,13 +145,6 @@
 				android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 			<!-- End Vungle -->
 
-			<!-- Flurry-ads -->
-			<!--suppress AndroidDomInspection -->
-			<activity android:name="com.flurry.android.FlurryFullscreenTakeoverActivity" 
-				android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
-			</activity>
-			<!-- End Flurry-ads -->
-
 			<!-- Mobvista -->
 			<activity
 				android:name="com.mintegral.msdk.activity.MTGCommonActivity"
