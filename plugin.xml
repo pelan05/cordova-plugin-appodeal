@@ -356,7 +356,6 @@
 		<source-file src="libs/Android/converter-gson-2.2.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/facebook-5.1.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/fetch-1.1.5.jar" target-dir="app/libs" />
-		<source-file src="libs/Android/gson-2.7.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/inmobi-7.1.1.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/ironsource-6.7.9.1.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/logging-interceptor-3.7.0.jar" target-dir="app/libs" />
@@ -381,8 +380,6 @@
 		<source-file src="libs/Android/mopub-sdk-rewardedvideo-5.1.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/mopub-volley-2.0.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/ogury-3.0.13.aar" target-dir="app/libs" />
-		<source-file src="libs/Android/okhttp-3.7.0.jar" target-dir="app/libs" />
-		<source-file src="libs/Android/okio-1.12.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/retrofit-2.2.0.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/startapp-3.9.3.jar" target-dir="app/libs" />
 		<source-file src="libs/Android/tapjoy-11.12.2.jar" target-dir="app/libs" />
