@@ -110,6 +110,9 @@ public class AppodealPlugin extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    if("true".equals(Settings.System.getString(cordova.getActivity().getContentResolver(), "firebase.test.lab"))) {
+                        Appodeal.setTesting(true);
+                    }
                     Appodeal.initialize(cordova.getActivity(), appKey, getAdType(adType), consentValue);
                     isInitialized = true;
                     callback.sendPluginResult(new PluginResult(PluginResult.Status.OK, true));
