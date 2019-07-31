@@ -35,19 +35,29 @@ Simply go to the project folder over console/terminal and run there following co
 
     cordova plugin add https://github.com/GartorwareCorp/appodeal-cordova-plugin.git --variable ADMOB_APP_ID="<YOUR_ANDROID_ADMOB_APP_ID_AS_FOUND_IN_ADMOB>"
 
-Also add this to your security_config.xml if targeting Android >= 28
+Also, *if targeting Android >= 28*, create a `resources/android/xml/network_security_config.xml` file with this content:
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <base-config cleartextTrafficPermitted="true">
         <trust-anchors>
             <certificates src="system"/>
+            <certificates src="user" />
         </trust-anchors>
     </base-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain>localhost</domain>
     </domain-config>
 </network-security-config>
+```
+And edit your config.xml to include this file in your build:
+
+```
+<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
+     <application android:networkSecurityConfig="@xml/network_security_config" />
+</edit-config>
+<resource-file src="resources/android/xml/network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
+        
 ```
 
 Google Play Services (v17+) already included to plugin dependencies.
@@ -61,7 +71,7 @@ Minimum OS requirements:
 
 Appodeal Cordova Plugin includes:
 
-+ Android Appodeal SDK version 2.4.10
++ Android Appodeal SDK version 2.5.6
 + iOS Appodeal SDK version 2.4.4.3-Beta
 
 ### Multidex
@@ -239,14 +249,15 @@ If you are using proguard (cordova-plugin-proguard) don't forget to add custom r
 ##---------------End: proguard configuration for Admob  ----------
 
 ##---------------Begin: proguard configuration for Appodeal  ----------
-# AdMediator
--keep class com.admediator.** { *; }
-
 # Appodeal
 -keep class com.appodeal.** { *; }
+-dontwarn com.appodeal.**
 -keep class com.appodealx.** { *; }
--keep class org.nexage.** { *; }
+-dontwarn com.appodealx.**
 -keepattributes EnclosingMethod, InnerClasses, Signature, JavascriptInterface
+
+# AdMediator
+-keep class com.admediator.** { *; }
 
 # Amazon
 -keep class com.amazon.** { *; }
@@ -276,11 +287,22 @@ If you are using proguard (cordova-plugin-proguard) don't forget to add custom r
 }
 
 # Applovin
--keep class com.applovin.** { *; }
+-keepattributes Signature,InnerClasses,Exceptions,*Annotation*
+-keep public class com.applovin.sdk.AppLovinSdk { *; }
+-keep public class com.applovin.sdk.AppLovin* { public protected *; }
+-keep public class com.applovin.nativeAds.AppLovin* { public protected *; }
+-keep public class com.applovin.adview.* { public protected *; }
+-keep public class com.applovin.mediation.* { public protected *; }
+-keep public class com.applovin.mediation.ads.* { public protected *; }
+-keep public class com.applovin.impl.**.AppLovin* { public protected *; }
+-keep public class com.applovin.impl.**.*Impl { public protected *; }
+-keepclassmembers class com.applovin.sdk.AppLovinSdkSettings { private java.util.Map localSettings; }
+-keep class com.applovin.mediation.adapters.** { *; }
+-keep class com.applovin.mediation.adapter.** { *; }
 -dontwarn com.applovin.**
 
 # Facebook
--keep class com.facebook.ads.** { *; }
+-keepnames public class com.facebook.ads.** { public protected *; }
 -keeppackagenames com.facebook.*
 -dontwarn com.facebook.ads.**
 
@@ -290,12 +312,17 @@ If you are using proguard (cordova-plugin-proguard) don't forget to add custom r
 
 # Unity Ads
 -keepattributes SourceFile,LineNumberTable
--keep class com.unity3d.** { *; }
--dontwarn com.unity3d.**
+-keepattributes JavascriptInterface
+-keep class android.webkit.JavascriptInterface { *; }
+-keep class com.unity3d.ads.** { *; }
+-keep class com.unity3d.services.** { *; }
+-dontwarn com.google.ar.core.**
 
 # Yandex
--keep class com.yandex.metrica.** { *; }
--dontwarn com.yandex.metrica.**
+-keep class com.yandex.metrica.impl.** { *; }
+-dontwarn com.yandex.metrica.impl.**
+-keep class com.yandex.metrica.* { *; }
+-dontwarn com.yandex.metrica.*
 -keep class com.yandex.mobile.ads.** { *; }
 -dontwarn com.yandex.mobile.ads.**
 -keepattributes *Annotation*
@@ -317,16 +344,11 @@ If you are using proguard (cordova-plugin-proguard) don't forget to add custom r
 -keepclasseswithmembers class * {
   public <init>(android.content.Context, android.util.AttributeSet, int);
 }
-
-# Adcolony
--keep class com.jirbo.adcolony.** { *;}
--keep class com.adcolony.** { *;}
--keep class com.immersion.** { *;}
--dontnote com.immersion.**
--dontwarn android.webkit.**
--dontwarn com.jirbo.adcolony.**
--dontwarn com.adcolony.**
--keepclassmembers class com.adcolony.sdk.ADCNative** { *; }
+-keep class * extends java.util.ListResourceBundle { protected Object[][] getContents(); }
+-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable { public static final *** NULL; }
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * { @com.google.android.gms.common.annotation.KeepName *; }
+-keepnames class * implements android.os.Parcelable { public static final ** CREATOR; }
 
 # Vungle
 -keep class com.vungle.warren.** { *; }
@@ -336,31 +358,65 @@ If you are using proguard (cordova-plugin-proguard) don't forget to add custom r
 -keep class com.moat.** { *; }
 -dontwarn com.moat.**
 
+# Vungle/Fetch
+-keepnames class com.tonyodev.fetch.Fetch
+
 # Vungle/Okio
+-keepnames class okio.Okio
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
 # Vungle/Retrofit
 -dontwarn okio.**
 -dontwarn retrofit2.Platform$Java8
+-keepnames class retrofit2.converter.gson.GsonConverterFactory
+-keepnames class retrofit2.Retrofit
 
 # Vungle/Gson
 -keepattributes Signature
 -keepattributes *Annotation*
 -dontwarn sun.misc.**
--keep class com.google.gson.examples.android.model.** { *; }
--keep class * implements com.google.gson.TypeAdapterFactory
--keep class * implements com.google.gson.JsonSerializer
--keep class * implements com.google.gson.JsonDeserializer
+-keep class com.google.gson.** { *; }
 
 # Vungle/Google Android Advertising ID
 -keep class com.google.android.gms.internal.** { *; }
 -dontwarn com.google.android.gms.ads.identifier.**
 
+# Vungle/okhttp3
+-keep class okhttp3.logging.HttpLoggingInterceptor
+-keepnames class okhttp3.HttpUrl
+
 # MyTarget
 -keep class com.my.target.** { *; }
 -dontwarn com.my.target.**
+-dontwarn com.my.target.nativeads.mediation.**
+-dontwarn com.my.target.core.net.cookie.**
+-dontwarn com.my.target.ads.mediation.MyTargetAdmobCustomEventBanner**
+-dontwarn com.my.target.ads.mediation.MyTargetAdmobCustomEventInterstitial**
+-dontwarn com.my.target.ads.mediation.MyTargetAdmobCustomEventRewarded**
+-dontwarn com.my.target.ads.mediation.MyTargetMopubCustomEventBanner**
+-dontwarn com.my.target.ads.mediation.MyTargetAdmobCustomEventInterstitial**
+-dontwarn com.my.target.ads.mediation.MyTargetAdmobCustomEventRewarded**
+-dontwarn com.my.target.ads.mediation.MyTargetMopubCustomEventBanner**
+-keep class com.mopub.MopubCustomParamsUtils**{ *; }
+-keep class com.mopub.mobileads.MyTargetMopubCustomEventInterstitial**{ *; }
+-keep class com.mopub.mobileads.MyTargetMopubCustomEventRewardedVideo**{ *; }
+-keep class com.mopub.nativeads.MyTargetCustomEventNative**{ *; }
+-keep class com.mopub.nativeads.MyTargetStaticNativeAd**{ *; }
+-dontwarn com.mopub.MopubCustomParamsUtils**
+-dontwarn com.mopub.mobileads.MyTargetMopubCustomEventInterstitial**
+-dontwarn com.mopub.mobileads.MyTargetMopubCustomEventRewardedVideo**
+-dontwarn com.mopub.nativeads.MyTargetCustomEventNative**
+-dontwarn com.mopub.nativeads.MyTargetStaticNativeAd**
+-keep class com.google.android.exoplayer2.** { *; }
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {
+    com.google.android.gms.ads.identifier.AdvertisingIdClient$Info getAdvertisingIdInfo(android.content.Context);
+}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {
+    java.lang.String getId();
+    boolean isLimitAdTrackingEnabled();
+}
 
-# Mobvista
+# Mintegral
 -keepattributes Signature
 -keepattributes *Annotation*
 -keep class com.mintegral.** {*; }
@@ -376,17 +432,27 @@ If you are using proguard (cordova-plugin-proguard) don't forget to add custom r
 
 # Tapjoy
 -keep class com.tapjoy.** { *; }
+-keep class com.moat.** { *; }
+-keepattributes JavascriptInterface
+-keepattributes *Annotation*
+-keep class * extends java.util.ListResourceBundle { protected Object[][] getContents(); }
+-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable { public static final *** NULL; }
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * { @com.google.android.gms.common.annotation.KeepName *; }
+-keepnames class * implements android.os.Parcelable { public static final ** CREATOR; }
+-keep class com.google.android.gms.ads.identifier.** { *; }
 -dontwarn com.tapjoy.**
 
 # IronSource
 -keepclassmembers class com.ironsource.sdk.controller.IronSourceWebView$JSInterface { public *; }
 -keepclassmembers class * implements android.os.Parcelable { public static final android.os.Parcelable$Creator *; }
 -keep public class com.google.android.gms.ads.** { public *; }
+-keep class com.ironsource.adapters.** { *; }
+-keepnames class com.ironsource.mediationsdk.IronSource
+-dontwarn com.ironsource.mediationsdk.**
+-dontwarn com.ironsource.adapters.**
 -dontwarn com.moat.**
 -keep class com.moat.** { public protected private *; }
--keep class com.ironsource.adapters.** { *; }
--keepnames class com.ironsource.mediationsdk.IronSource { *; }
--dontwarn com.ironsource.**
 
 # AdColonyV3
 -keepclassmembers class * { @android.webkit.JavascriptInterface <methods>; }
@@ -395,23 +461,33 @@ If you are using proguard (cordova-plugin-proguard) don't forget to add custom r
 -dontwarn android.app.Activity
 
 # Inmobi
+-keepattributes SourceFile,LineNumberTable
 -keep class com.inmobi.** { *; }
 -dontwarn com.inmobi.**
 -keep public class com.google.android.gms.**
+-dontwarn com.google.android.gms.**
 -dontwarn com.squareup.picasso.**
--keep class com.google.android.gms.ads.identifier.AdvertisingIdClient{
-     public *;
-}
--keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info{ *; }
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient{public *;}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info{public *;}
+
+# Picasso
 -keep class com.squareup.picasso.** {*;}
 -dontwarn com.squareup.picasso.**
 -dontwarn com.squareup.okhttp.**
+
+# Moat
 -keep class com.moat.** {*;}
 -dontwarn com.moat.**
--keep class com.integralads.avid.library.* {*;}
+
+# AVID
+-keep class com.integralads.avid.library.** {*;}
+
+# Ogury
+-dontwarn io.presage.**
 
 # Google
--keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
+-keep class com.google.android.gms.common.GooglePlayServicesUtil { *; }
+-keep class com.google.android.gms.common.GoogleApiAvailability { *; }
 -keep class com.google.android.gms.ads.identifier.** { *; }
 -dontwarn com.google.android.gms.**
 
@@ -468,11 +544,10 @@ If you are using proguard (cordova-plugin-proguard) don't forget to add custom r
 -keep class android.support.v4.view.ViewPager { *; }
 -keep class android.support.v4.content.ContextCompat { *; }
 
-# support-v7-recyclerview
--keep class android.support.v7.widget.RecyclerView { *; }
--keep class android.support.v7.widget.LinearLayoutManager { *; }
+# support-v7-widget
+-keep class android.support.v7.widget.** { *; }
 
-#MultiDex
+# MultiDex
 -keepnames class android.support.multidex.MultiDex
 
 # AndroidX
