@@ -996,6 +996,23 @@ public class AppodealPlugin extends CordovaPlugin {
             });
         }
 
+        @Override
+        public void onRewardedVideoClicked() {
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        JSONObject vals = new JSONObject();
+                        vals.put("event", CALLBACK_CLICKED);
+                        PluginResult result = new PluginResult(PluginResult.Status.OK, vals);
+                        result.setKeepCallback(true);
+                        rewardedCallbacks.sendPluginResult(result);
+                    } catch (JSONException e) {
+                    }
+                }
+            });
+        }
+
     };
 
     private BannerCallbacks bannerListener = new BannerCallbacks() {
