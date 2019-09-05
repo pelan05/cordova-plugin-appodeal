@@ -33,7 +33,7 @@ This is an official Appodeal Cordova plugin, created to support Appodeal SDK wit
 
 Simply go to the project folder over console/terminal and run there following command:
 
-    cordova plugin add https://github.com/GartorwareCorp/appodeal-cordova-plugin.git --variable ADMOB_APP_ID="<YOUR_ANDROID_ADMOB_APP_ID_AS_FOUND_IN_ADMOB>"
+    cordova plugin add https://github.com/GartorwareCorp/appodeal-cordova-plugin.git#trimmed --variable ADMOB_APP_ID="<YOUR_ANDROID_ADMOB_APP_ID_AS_FOUND_IN_ADMOB>"
 
 Then in your code you must disable these networks **BEFORE** initialization:
 ```
