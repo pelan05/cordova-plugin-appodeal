@@ -1,5 +1,5 @@
 {
-  "version": "4.1.0",
+  "version": "4.1.1",
   "name": "@gartorware/cordova-plugin-appodeal",
   "cordova_name": "Appodeal Cordova Plugin",
   "platforms": [
