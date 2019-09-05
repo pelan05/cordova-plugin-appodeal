@@ -22,33 +22,24 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+	// Appodeal SDK
+	implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     
+	// Google Play Services
     implementation 'com.google.android.gms:play-services-ads:17.+'
     implementation 'com.google.android.gms:play-services-location:17.+'
     implementation 'com.google.android.gms:play-services-gcm:17.+'
-	
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation 'com.android.support:support-v4:26.1.0'
 
+	// For myTarget SDK
+	implementation 'com.google.android.exoplayer:exoplayer-core:2.8.4'
+	implementation 'com.google.android.exoplayer:exoplayer-hls:2.8.4'
+	
+	// Android support library
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+
+	// Third party dependencies
     implementation 'com.google.code.gson:gson:2.8.4'
     implementation 'com.squareup.okhttp3:okhttp:3.7.0'
     implementation 'com.squareup.okio:okio:1.12.0'
-    implementation 'com.squareup.picasso:picasso:2.5.2' //for Inmobi
-    implementation name: 'mintegral-9.11.01-alphab', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-common', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-interstitial', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-interstitialvideo', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-mtgdownloads', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-mtgjscommon', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-mtgnative', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-nativeex', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-playercommon', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-reward', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-videocommon', ext: 'aar'
-	implementation name: 'mintegral-9.11.01-videojs', ext: 'aar'
-	implementation name: 'ogury-3.0.36', ext: 'aar'
-
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.8.4'
-	implementation 'com.google.android.exoplayer:exoplayer-hls:2.8.4'
 }
