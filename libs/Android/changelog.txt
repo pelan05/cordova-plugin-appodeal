@@ -1,3 +1,6 @@
+2.5.7 (14 August, 2019)
+    Mintegral updated to 9.13.21
+
 2.5.6 (10 July, 2019)
     Fix double 'RewardedVideoCallbacks#onRewardedVideoFinished' callback call for some creative
     Fix Native Ads crash when retrieved video sizes equals zero for some creative
