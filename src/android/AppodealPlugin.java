@@ -38,6 +38,7 @@ public class AppodealPlugin extends CordovaPlugin {
     private static final String ACTION_IS_LOADED = "isLoaded";
     private static final String ACTION_CACHE = "cache";
     private static final String ACTION_HIDE = "hide";
+    private static final String ACTION_RESUME = "onResume";
     private static final String ACTION_DESTROY = "destroy";
     private static final String ACTION_SET_AUTO_CACHE = "setAutoCache";
     private static final String ACTION_IS_PRECACHE = "isPrecache";
@@ -226,6 +227,19 @@ public class AppodealPlugin extends CordovaPlugin {
                 @Override
                 public void run() {
                     Appodeal.destroy(adType);
+                }
+            });
+            return true;
+        } else if (action.equals(ACTION_RESUME)) {
+            final int adType = args.getInt(0);
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    int rAdType = getAdType(adType);
+                    if (rAdType == Appodeal.BANNER || rAdType == Appodeal.BANNER_BOTTOM
+                            || rAdType == Appodeal.BANNER_TOP) {
+                        Appodeal.onResume(cordova.getActivity(), rAdType);
+                    }
                 }
             });
             return true;
