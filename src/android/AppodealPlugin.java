@@ -1145,14 +1145,14 @@ public class AppodealPlugin extends CordovaPlugin {
                 parentView = new LinearLayout(cordova.getActivity());
             }
             if (rootView != parentView) {
-                ((ViewGroup) rootView.getParent()).removeView(rootView);
                 ((LinearLayout) parentView).setOrientation(LinearLayout.VERTICAL);
-                parentView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT, 0.0F));
-                rootView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT, 1.0F));
+                parentView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 0.0F));
+                rootView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 1.0F));
+                ViewGroup rootParentView = (ViewGroup) rootView.getParent();
+                rootParentView.addView(parentView);
+                rootParentView.removeView(rootView);
                 parentView.addView(rootView);
-                cordova.getActivity().setContentView(parentView);
+                //cordova.getActivity().setContentView(parentView);
             }
 
             if (adType == Appodeal.BANNER_TOP)
@@ -1162,6 +1162,7 @@ public class AppodealPlugin extends CordovaPlugin {
 
             parentView.bringToFront();
             parentView.requestLayout();
+            parentView.requestFocus();
         }
         boolean res = false;
         if (placement == null)
