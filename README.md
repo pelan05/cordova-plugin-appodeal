@@ -1,6 +1,6 @@
 # Appodeal Cordova Plugin
 
-This is an official Appodeal Cordova plugin, created to support Appodeal SDK with Apache Cordova.
+This is an unofficial Appodeal Cordova plugin, created to integrate Appodeal SDK with Apache Cordova.
 
 # How to Update Plugin Manually
 
@@ -597,11 +597,11 @@ If you are using proguard (cordova-plugin-proguard) don't forget to add custom r
 ### Ad Types
 
 + Appodeal.INTERSTITIAL
-+ Appodeal.BANNER
++ Appodeal.BANNER_TOP
++ Appodeal.BANNER_BOTTOM
 + Appodeal.REWARDED_VIDEO
-+ Appodeal.NON_SKIPPABLE_VIDEO
 
-Ad types can be combined using "|" operator. For example Appodeal.INTERSTITIAL | Appodeal.NON_SKIPPABLE_VIDEO.
+Ad types can be combined using "|" operator. For example Appodeal.INTERSTITIAL | Appodeal.REWARDED_VIDEO.
 
 ### SDK Initialization
 
@@ -912,11 +912,3 @@ Appodeal.setGender(UserSettings.Gender.FEMALE);
 ```
 
 Possible values: Appodeal.Gender.FEMALE, Appodeal.Gender.MALE, Appodeal.Gender.OTHER.
-
-## Changelog
-
-3.0.5 (21.04.2018)
-
-+ Appodeal iOS SDK updated to 2.1.10
-+ Appodeal Android SDK updated to 2.1.11
-+ Ogury for Android added as required library

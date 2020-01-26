@@ -62,16 +62,16 @@ Appodeal.destroy = function(adType) {
 	exec(null, null, "AppodealPlugin", "destroy", [adType]);
 }
 
+Appodeal.onResume = function(adType) {
+	exec(null, null, "AppodealPlugin", "onResume", [adType]);
+}
+
 Appodeal.setAutoCache = function(adType, autoCache) {
     exec(null, null, "AppodealPlugin", "setAutoCache", [adType, autoCache]);
 };
 
 Appodeal.isPrecache = function(adType, callback) {
     exec(callback, null, "AppodealPlugin", "isPrecache", [adType]);
-};
-
-Appodeal.setBannerBackground = function(value) {
-    exec(null, null, "AppodealPlugin", "setBannerBackground", [value]);
 };
 
 Appodeal.setBannerAnimation = function(value) {

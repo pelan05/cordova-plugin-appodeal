@@ -38,12 +38,12 @@ public class AppodealPlugin extends CordovaPlugin {
     private static final String ACTION_IS_LOADED = "isLoaded";
     private static final String ACTION_CACHE = "cache";
     private static final String ACTION_HIDE = "hide";
+    private static final String ACTION_RESUME = "onResume";
     private static final String ACTION_DESTROY = "destroy";
     private static final String ACTION_SET_AUTO_CACHE = "setAutoCache";
     private static final String ACTION_IS_PRECACHE = "isPrecache";
 
     private static final String ACTION_BANNER_ANIMATION = "setBannerAnimation";
-    private static final String ACTION_BANNER_BACKGROUND = "setBannerBackground";
     private static final String ACTION_SMART_BANNERS = "setSmartBanners";
     private static final String ACTION_728X90_BANNERS = "set728x90Banners";
     private static final String ACTION_BANNERS_OVERLAP = "setBannerOverLap";
@@ -229,6 +229,19 @@ public class AppodealPlugin extends CordovaPlugin {
                 }
             });
             return true;
+        } else if (action.equals(ACTION_RESUME)) {
+            final int adType = args.getInt(0);
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    int rAdType = getAdType(adType);
+                    if (rAdType == Appodeal.BANNER || rAdType == Appodeal.BANNER_BOTTOM
+                            || rAdType == Appodeal.BANNER_TOP) {
+                        Appodeal.onResume(cordova.getActivity(), rAdType);
+                    }
+                }
+            });
+            return true;
         } else if (action.equals(ACTION_SET_AUTO_CACHE)) {
             final int adType = args.getInt(0);
             final boolean autoCache = args.getBoolean(1);
@@ -258,15 +271,6 @@ public class AppodealPlugin extends CordovaPlugin {
                 @Override
                 public void run() {
                     Appodeal.setBannerAnimation(value);
-                }
-            });
-            return true;
-        } else if (action.equals(ACTION_BANNER_BACKGROUND)) {
-            final boolean value = args.getBoolean(0);
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    // Appodeal.setBannerBackground(value);
                 }
             });
             return true;
@@ -1141,14 +1145,14 @@ public class AppodealPlugin extends CordovaPlugin {
                 parentView = new LinearLayout(cordova.getActivity());
             }
             if (rootView != parentView) {
-                ((ViewGroup) rootView.getParent()).removeView(rootView);
                 ((LinearLayout) parentView).setOrientation(LinearLayout.VERTICAL);
-                parentView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT, 0.0F));
-                rootView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT, 1.0F));
+                parentView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 0.0F));
+                rootView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 1.0F));
+                ViewGroup rootParentView = (ViewGroup) rootView.getParent();
+                rootParentView.addView(parentView);
+                rootParentView.removeView(rootView);
                 parentView.addView(rootView);
-                cordova.getActivity().setContentView(parentView);
+                //cordova.getActivity().setContentView(parentView);
             }
 
             if (adType == Appodeal.BANNER_TOP)
@@ -1158,6 +1162,7 @@ public class AppodealPlugin extends CordovaPlugin {
 
             parentView.bringToFront();
             parentView.requestLayout();
+            parentView.requestFocus();
         }
         boolean res = false;
         if (placement == null)

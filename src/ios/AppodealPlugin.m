@@ -204,10 +204,6 @@ int nativeShowStyleForType(int adTypes) {
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void) setBannerBackground:(CDVInvokedUrlCommand*)command {
-    [Appodeal setBannerBackgroundVisible:[[[command arguments] objectAtIndex:0] boolValue]];
-}
-
 - (void) setBannerAnimation:(CDVInvokedUrlCommand*)command {
     [Appodeal setBannerAnimationEnabled:[[[command arguments] objectAtIndex:0] boolValue]];
 }

@@ -17,7 +17,6 @@
 - (void) setAutoCache:(CDVInvokedUrlCommand*)command;
 - (void) isPrecache:(CDVInvokedUrlCommand*)command;
 
-- (void) setBannerBackground:(CDVInvokedUrlCommand*)command;
 - (void) setBannerAnimation:(CDVInvokedUrlCommand*)command;
 - (void) setSmartBanners:(CDVInvokedUrlCommand*)command;
 - (void) set728x90Banners:(CDVInvokedUrlCommand*)command;
