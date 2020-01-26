@@ -74,10 +74,6 @@ Appodeal.isPrecache = function(adType, callback) {
     exec(callback, null, "AppodealPlugin", "isPrecache", [adType]);
 };
 
-Appodeal.setBannerBackground = function(value) {
-    exec(null, null, "AppodealPlugin", "setBannerBackground", [value]);
-};
-
 Appodeal.setBannerAnimation = function(value) {
     exec(null, null, "AppodealPlugin", "setBannerAnimation", [value]);
 };

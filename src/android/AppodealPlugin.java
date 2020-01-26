@@ -44,7 +44,6 @@ public class AppodealPlugin extends CordovaPlugin {
     private static final String ACTION_IS_PRECACHE = "isPrecache";
 
     private static final String ACTION_BANNER_ANIMATION = "setBannerAnimation";
-    private static final String ACTION_BANNER_BACKGROUND = "setBannerBackground";
     private static final String ACTION_SMART_BANNERS = "setSmartBanners";
     private static final String ACTION_728X90_BANNERS = "set728x90Banners";
     private static final String ACTION_BANNERS_OVERLAP = "setBannerOverLap";
@@ -272,15 +271,6 @@ public class AppodealPlugin extends CordovaPlugin {
                 @Override
                 public void run() {
                     Appodeal.setBannerAnimation(value);
-                }
-            });
-            return true;
-        } else if (action.equals(ACTION_BANNER_BACKGROUND)) {
-            final boolean value = args.getBoolean(0);
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    // Appodeal.setBannerBackground(value);
                 }
             });
             return true;
