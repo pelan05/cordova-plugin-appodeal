@@ -1,3 +1,7 @@
+
+#THIS IS A FORK FROM GatorwareCorp/cordova-plugin-appodeal // THIS IS NOT MY CODE
+
+
 # Appodeal Cordova Plugin
 
 This is an unofficial Appodeal Cordova plugin, created to integrate Appodeal SDK with Apache Cordova.
